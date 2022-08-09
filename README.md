@@ -37,24 +37,15 @@
 
 <!-- ![Reference](ref-route.jpg) ![Only green](green-route.png) -->
 <div align="center">
-    <figure>
-        <img align="center" width="200"
+    <img align="center" width="200"
             src="ref-route.jpg"
             alt="Picture of reference of a climbing wall">
-        <figcaption>Picture of reference</figcaption>
-    </figure>
-    <figure>
-        <img align="center" width="200"
+    <img align="center" width="200"
             src="green-route.png"
             alt="Processed image with a green color selected">
-        <figcaption>Image after selecting a green color on the image</figcaption>
-    </figure>
-    <figure>
-        <img align="center" width="200"
+    <img align="center" width="200"
             src="blue-route.png"
             alt="Processed image with a blue color selected">
-        <figcaption>Image after selecting a blue color on the image</figcaption>
-    </figure>
 </div>
 
 This project aims to display just one color and its variations in an image.
