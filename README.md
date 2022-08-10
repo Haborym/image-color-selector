@@ -91,13 +91,14 @@ For now refreshing the page is the only way to retry the color selection and alg
 - [x] Choosing a color
 - [x] Use an alorithm other than RGB distance
     - [x] CIE76
-    - [ ] CIE94
+    - [x] CIE94
     - [ ] CIEDE2000
+- [x] Change the algorithm
 - [ ] Keep the same Resolution
 - [ ] Add Download button
 - [ ] Add Change Image
 - [ ] Add Retry Button
-- [ ] Add UI to change the threshold of the detection
+- [x] Add UI to change the threshold of the detection
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
