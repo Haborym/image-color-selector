@@ -17,24 +17,21 @@ window.onload = function() {
 
     make_base();
 
-    function make_base() { 
-        base_image = new Image();
-        base_image.crossOrigin = "anonymous";
-        // base_image.src = 'https://socialboulder.s3-eu-west-1.amazonaws.com/bouldersPics/vMb6jjcfe7arsqoLq.jpg';
-        base_image.src = 'https://socialboulder.s3-eu-west-1.amazonaws.com/bouldersPics/FBK4zna8FL4fmki4t.jpg';
-        // base_image.src = 'https://socialboulder.s3-eu-west-1.amazonaws.com/bouldersPics/96cNmdZ8c8KCuSA8n.jpg';
-        // base_image.src = 'https://socialboulder.s3-eu-west-1.amazonaws.com/bouldersPics/qWoaX85ntnzhK55Cj.jpg';
-        base_image.onload = function(){
-            height = base_image.height;
-            width = base_image.width;
-            context.drawImage(
-                base_image, 0, 0, base_image.width, base_image.height,
-                0, 0, canvas.width - 200, canvas.height
-            );
+    document.getElementById('btn-retry').addEventListener('click', event => {
+        if(arr_data === null) {return;}
 
-            arr_data = context.getImageData(0, 0, canvas.width, canvas.height);
-        }
-    }
+        context.putImageData(arr_data, 0, 0);
+    });
+
+    document.getElementById('threshold').addEventListener('change', event => {
+        document.getElementById('span_value').textContent = event.target.value;
+
+        threshold = event.target.value;
+    });
+
+    document.getElementById('algo-select').addEventListener('change', event => {
+        algorithmFn = event.target.value;
+    });
 
     canvas.addEventListener('mousemove', event => {
         const pixel = context.getImageData(event.x, event.y, 1, 1);
@@ -65,16 +62,25 @@ window.onload = function() {
         console.log(`Opération résolue en ${secondsDelta} secondes !`);
     });
 
-    document.getElementById('threshold').addEventListener('change', event => {
-        document.getElementById('span_value').textContent = event.target.value;
+    function make_base() { 
+        base_image = new Image();
+        base_image.crossOrigin = "anonymous";
+        // base_image.src = 'https://socialboulder.s3-eu-west-1.amazonaws.com/bouldersPics/vMb6jjcfe7arsqoLq.jpg';
+        base_image.src = 'https://socialboulder.s3-eu-west-1.amazonaws.com/bouldersPics/FBK4zna8FL4fmki4t.jpg';
+        // base_image.src = 'https://socialboulder.s3-eu-west-1.amazonaws.com/bouldersPics/96cNmdZ8c8KCuSA8n.jpg';
+        // base_image.src = 'https://socialboulder.s3-eu-west-1.amazonaws.com/bouldersPics/qWoaX85ntnzhK55Cj.jpg';
+        base_image.onload = function(){
+            height = base_image.height;
+            width = base_image.width;
+            context.drawImage(
+                base_image, 0, 0, base_image.width, base_image.height,
+                0, 0, canvas.width - 200, canvas.height
+            );
 
-        threshold = event.target.value;
-    });
+            arr_data = context.getImageData(0, 0, canvas.width, canvas.height);
+        }
+    }
 
-    document.getElementById('algo-select').addEventListener('change', event => {
-        algorithmFn = event.target.value;
-    });
-    
     function processPixels(image, color_ref) {
         const { data } = image;
         const { length } = data;
@@ -91,8 +97,6 @@ window.onload = function() {
             }
 
             const deltaEValue = window[algorithmFn](color_ref, pixel_target);
-            // const deltaEValue = deltaE76(color_ref, pixel_target);
-            // const deltaEValue = deltaE94(color_ref, pixel_target);
 
             if(deltaEValue > threshold) {
                 const greyscale = 0.299*data[i] + 0.587*data[i+1] + 0.114*data[i+2]; 
