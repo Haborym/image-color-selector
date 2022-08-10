@@ -13,5 +13,18 @@
     <body>
         <img id="test_img" alt="test" src="route.jpg" hidden/>
         <canvas id="testCouleur" width="800" height="1000" style="position:relative;"></canvas>
+        <div>
+            <input type="range" id="threshold" name="threshold"
+                   min="0" value="20" max="150">
+            <label for="threshold">Threshold <span id="span_value">20</span></label>
+        </div>
+        <div>
+            <label for="algo-select">Choose the DeltaE algs:</label>
+
+            <select name="algos" id="algo-select">
+                <option value="deltaE76" selected>DeltaE76</option>
+                <option value="deltaE94">DeltaE94</option>
+            </select>
+        </div>
     </body>
 </html>
